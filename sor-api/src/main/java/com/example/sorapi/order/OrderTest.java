@@ -1,45 +1,49 @@
 package com.example.sorapi.order;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderTest {
 
 	public static void main(String[] args) {
 		
+		List<Order> orders = new ArrayList<Order>();
 		
-		Order order1 = new Order("DRD-001", "005930", 10, 70000);
-		Order order2 = new Order("DRD-002", "000660", 5, 150000);
-		Order order3 = new Order("", "035420", 20, 200000);
-		Order order4 = new Order("ORD-004", "051910", 15, 350000);
+		orders.add(new Order("ORD-001", "005930", 10, 70000));
+		orders.add(new Order("ORD-002", "000660", 5, 150000));
+		orders.add(new Order("ORD-003", "005930", 20, 71000));
+		orders.add(new Order("ORD-004", "035420", 7, 200000));
+		orders.add(new Order("ORD-005", "005930", 15, 70500));
 		
-		List<Order> orders = new ArrayList<>();
+		Map<String, List<Order>> orderBySymbol = new HashMap<String, List<Order>>();
+		
+		for(Order order : orders) {
+			String symbol = order.getSymbol();
 			
-		orders.add(order1);
-		orders.add(order2);
-		orders.add(order3);
-		orders.add(order4);
-		
-		OrderValidator validator = new OrderValidator();
-		
-		List<ValidationResult> results = validator.validateAll(orders);
-		
-		for (ValidationResult result : results) {
-			System.out.println(result.isValid() + " / " + result.getMessage());
+			List<Order> orderForSymbol = orderBySymbol.computeIfAbsent(symbol, key -> new ArrayList<Order>());
+			
+//			List<Order> orderForSymbol = orderBySymbol.get(symbol);
+			
+//			if(orderForSymbol == null) {
+//				orderForSymbol = new ArrayList<Order>();
+//				
+//				orderBySymbol.put(symbol, orderForSymbol);
+//			}
+//			
+			orderForSymbol.add(order);
 		}
 		
-		
-//		
-//		System.out.println("갯수 : " + orders.size());
-//		
-//		for(Order order : orders) {
-//			System.out.print(orderValidator.validate(order).getMessage() + " : ");
-//			System.out.println(order.getOrderId() + " / "
-//					+ order.getSymbol() + " / "
-//					+ order.getQuantity() + "주 / "
-//					+ order.getPrice() + "원");
-//		}
-		
+		  for(Map.Entry<String, List<Order>> entry : orderBySymbol.entrySet()) {
+			  String symbol = entry.getKey();
+		  
+			  System.out.println("종목 : " + symbol);
+		  
+			  for(Order order : entry.getValue()) {
+				  System.out.println("주문: " + order.getOrderId() + " / " + order.getOrderId() + "주 / " + order.getOrderId() + "원"); 
+			  }
+		  }
 	}
 
 }
