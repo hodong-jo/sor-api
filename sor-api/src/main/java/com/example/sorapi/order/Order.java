@@ -14,6 +14,9 @@ public class Order {
 	private int quantity;
 	private int price;
 	
+	private OrderStatus status;
+	
+	
 	public Order() {
 	}
 	
@@ -27,17 +30,43 @@ public class Order {
 	public String getOrderId() {
 		return orderId;
 	}
+	
 	public String getSymbol() {
 		return symbol;
 	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
+	
 	public int getPrice() {
 		return price;
 	}
 	
-	
+	public OrderStatus getStatus() {
+		return status;
+	}
 
 	
+	
+	
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
 }

@@ -14,6 +14,19 @@ public class OrderJdbcRunner implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		Order order = new Order("ORD-003", "035422", 20, 250000);
+		
+		order.setStatus(OrderStatus.RECEIVED);
+		
+		System.out.println(
+				order.getOrderId() + " / "
+				+ order.getStatus()
+//				+ order.getSymbol() + " / " 
+//				+  order.getQuantity() + "주 / " 
+//				+ order.getPrice() + "원"
+		);
+		
+		
 		String url = "jdbc:h2:mem:sordb";
 		String username = "sa";
 		String password = "";
@@ -30,7 +43,7 @@ public class OrderJdbcRunner implements CommandLineRunner{
 			int quantity = resultSet.getInt("quantity");
 			int price = resultSet.getInt("price");
 			
-			System.out.println(orderId + " / " + symbol + " / " + price + "주 / " + quantity + "원"); 
+			System.out.println(orderId + " / " + symbol + " / " + quantity + "주 / " + price + "원"); 
 		}
 		
 		resultSet.close();
