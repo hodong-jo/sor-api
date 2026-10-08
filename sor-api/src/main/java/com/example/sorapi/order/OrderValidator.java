@@ -1,8 +1,11 @@
 package com.example.sorapi.order;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class OrderValidator {
 
 	public ValidationResult validate(Order order) {

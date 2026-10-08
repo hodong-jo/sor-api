@@ -1,6 +1,8 @@
 package com.example.sorapi.order;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -14,6 +16,7 @@ public class Order {
 	private int quantity;
 	private int price;
 	
+	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
 	
 	
