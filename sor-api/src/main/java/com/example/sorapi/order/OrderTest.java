@@ -22,7 +22,7 @@ public class OrderTest {
 		
 		Statement statement = connection.createStatement();
 		
-		ResultSet resultSet = statement.executeQuery("SELECT * FROM orders");
+		ResultSet resultSet = statement.executeQuery("SELECT * FROM ORDERS");
 		
 		while(resultSet.next()) {
 			String orderId = resultSet.getString("order_id");
