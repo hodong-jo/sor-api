@@ -1,5 +1,7 @@
 package com.example.sorapi.order;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +15,7 @@ public class OrderService {
 		this.orderValidator = orderValidator;
 	}
 
-	public void createOrder(OrderCreateRequest request) {
+	public Order createOrder(OrderCreateRequest request) {
 
 		Order order = new Order(request.getOrderId(), request.getSymbol(), request.getQuantity(), request.getPrice());
 
@@ -25,12 +27,29 @@ public class OrderService {
 		
 		order.setStatus(OrderStatus.RECEIVED);
 		
-		orderRepository.save(order);
-
+		return orderRepository.save(order); 
+	}
+	
+	public List<Order> getOrderByPriceRange(int minPrice, int maxPrice) {
+		return orderRepository.findByPriceBetween(minPrice, maxPrice);
 	}
 	
 	public Order getOrder(String orderId) {
 		return orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
 	}
+	
+	public List<Order> getOrders(){
+		return orderRepository.findAll();
+	}
+	
+	public List<Order> getOrdersBysymbol(String symbol){
+		return orderRepository.findBySymbol(symbol);
+	}
+	
+	public void deleteOrder(String orderId) {
+		Order order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
+		orderRepository.delete(order);
+	}
+	
 
 }

@@ -2,6 +2,7 @@ package com.example.sorapi.order;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -22,5 +23,14 @@ public class OrderExceptionHandler {
 		ErrorResponse response = new ErrorResponse("ORDER_NOT_FOUND", e.getMessage());
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<ErrorResponse> handlerValidationException(MethodArgumentNotValidException e) {
+		String message = e.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+		
+		ErrorResponse response = new ErrorResponse("VALIDATION_ERROR", message);
+		
+		return ResponseEntity.badRequest().body(response);
 	}
 }
