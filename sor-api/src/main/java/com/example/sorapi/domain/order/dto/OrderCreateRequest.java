@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

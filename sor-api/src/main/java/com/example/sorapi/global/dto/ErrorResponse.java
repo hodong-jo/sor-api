@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.global.dto;
 
 public class ErrorResponse {
 	

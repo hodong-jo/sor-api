@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order;
 
 import java.util.ArrayList;
 import java.util.List;

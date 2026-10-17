@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

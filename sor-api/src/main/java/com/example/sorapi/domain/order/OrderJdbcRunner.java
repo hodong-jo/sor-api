@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class OrderJdbcRunner implements CommandLineRunner{
 
 	@Override

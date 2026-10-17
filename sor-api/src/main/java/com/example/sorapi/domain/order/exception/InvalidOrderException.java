@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order.exception;
 
 public class InvalidOrderException extends RuntimeException{
 	

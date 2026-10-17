@@ -1,4 +1,4 @@
-package com.example.sorapi.order;
+package com.example.sorapi.domain.order;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
