@@ -1,23 +1,31 @@
 package com.example.sorapi.domain.order;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "orders")
 public class Order {
-	
 	@Id
 	private String orderId;
 	private String symbol;
 	private int quantity;
 	private int price;
+	private LocalDateTime orderTime;
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
+	
+	@PrePersist
+	public void prePersist() {
+		this.orderTime = LocalDateTime.now();
+	}
 	
 	
 	public Order() {
@@ -50,6 +58,9 @@ public class Order {
 		return status;
 	}
 
+	public LocalDateTime getOrderTime() {
+        return orderTime;
+    }
 	
 	
 	
@@ -72,4 +83,8 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
+	
+	public void setOrderTime(LocalDateTime orderTime) {
+        this.orderTime = orderTime;
+    }
 }
